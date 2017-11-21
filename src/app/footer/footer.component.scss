@@ -1,0 +1,68 @@
+$assetPath : "../../assets/img/";
+
+footer {
+  background-color: #010101;
+  font-size: 12px;
+  height: 60px;
+  padding: 15px 0;
+  width: 100%;
+  .conditions {
+    a:first-child {
+      margin-left: 70px;
+    }
+  }
+  .logo {
+    a {
+      // background: url(#{$assetPath}redhat.svg) no-repeat;
+      height: 34px;
+      width: 94px;
+      margin: 0;
+      top: auto;
+      background-size: 94px 30px;
+      display: inline-block;
+    }
+  }
+  a {
+    color: #858585;
+    top: 7px;
+    position: relative;
+    margin-left: 15px;
+    &.legal {
+      border-right: 1px solid #858585;
+      padding-right: 15px;
+    }
+  }
+}
+@media (max-width: 1024px) {
+  footer {
+    .conditions {
+      font-size: 12px;
+      a:first-child {
+        margin-left: 35px;
+      }
+    }
+    .social {
+      display: none;
+    }
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    .conditions {
+      display: none;
+    }
+    a {
+      &.legal {
+        &:nth-child(2n) {
+          margin-left: 70px;
+        }
+      }
+    }
+  }
+  .footer-content {
+    a:first-child {
+      position: absolute;
+      right: 20px;
+    }
+  }
+}

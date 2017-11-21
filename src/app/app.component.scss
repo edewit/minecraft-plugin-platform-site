@@ -1,0 +1,22 @@
+
+.app {
+  flex: 1;
+}
+
+:host /deep/ {
+  font-size: 11pt;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.btn {
+  font-size: 11pt;
+}
+
+.form-control {
+  font-size: 10pt;
+}

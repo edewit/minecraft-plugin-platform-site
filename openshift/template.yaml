@@ -1,0 +1,114 @@
+kind: Template
+apiVersion: v1
+metadata:
+  name: launchpad-frontend
+  annotations:
+    openshift.io/display-name: "Launchpad - Frontend"
+    description: This application contains the Frontend web service
+    tags: instant-app,launchpad
+    iconClass: icon-shadowman
+    template.openshift.io/long-description: This application contains the Frontend web service
+    template.openshift.io/provider-display-name: Red Hat, Inc.
+    template.openshift.io/documentation-url: https://github.com/openshiftio
+    template.openshift.io/support-url: https://access.redhat.com
+message: "The following service has been created in your project: launchpad-frontend.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/openshiftio"
+labels:
+  template: launchpad-frontend
+parameters:
+- name: IMAGE
+  value: openshiftio/launchpad-frontend
+  required: true
+- name: IMAGE_TAG
+  value: latest
+  required: true
+objects:
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: launchpad-frontend
+    annotations:
+      configmap.fabric8.io/update-on-change: "launchpad"
+  spec:
+    replicas: 1
+    selector:
+      service: launchpad-frontend
+    strategy:
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          service: launchpad-frontend
+      spec:
+        containers:
+        - image: ${IMAGE}:${IMAGE_TAG}
+          imagePullPolicy: Always
+          name: launchpad-frontend
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          env:
+          - name: LAUNCHPAD_BACKEND_URL
+            value: /
+          - name: LAUNCHPAD_MISSIONCONTROL_URL
+            value: /
+          - name: LAUNCHPAD_KEYCLOAK_URL
+            valueFrom:
+              configMapKeyRef:
+                name: launchpad
+                key: launchpad.keycloak.url
+          - name: LAUNCHPAD_KEYCLOAK_REALM
+            valueFrom:
+              configMapKeyRef:
+                name: launchpad
+                key: launchpad.keycloak.realm
+          - name: LAUNCHPAD_TRACKER_SEGMENT_TOKEN
+            valueFrom:
+              configMapKeyRef:
+                name: launchpad
+                key: launchpad.tracker.segment.token
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          readinessProbe:
+            httpGet:
+              path: /wizard
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 10
+            periodSeconds: 20
+          livenessProbe:
+            httpGet:
+              path: /wizard
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 10
+            periodSeconds: 20
+        restartPolicy: Always
+        dnsPolicy: ClusterFirst
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+- kind: Service
+  apiVersion: v1
+  metadata:
+    labels:
+      service: launchpad-frontend
+    name: launchpad-frontend
+  spec:
+    ports:
+    - name: "8080"
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      service: launchpad-frontend
+    sessionAffinity: None
+    type: ClusterIP
