@@ -8,7 +8,6 @@
         <span class="pficon pficon-{{error.severity == 'ERROR' ? 'error-circle' : 'warning-triangle'}}-o"></span> {{error.description}}
       </div>
     </span>
-    <step [steps]="currentGui.state.steps" [stepIndex]="history.stepIndex"></step>
     <form class="form-horizontal" #wizard="ngForm">
       <div class="wizard-pf-loading blank-slate-pf loading" *ngIf="!currentGui.inputs">
         <div class="spinner spinner-lg blank-slate-pf-icon"></div>
@@ -31,7 +30,8 @@
         <la-buttons [state]="currentGui.state" disabled="true"></la-buttons>
       </div>
 
-      <generic [gui]="currentGui" [validation]="validation" (validate)="validate(form)"></generic>
+      <!-- <generic [gui]="currentGui" [validation]="validation" (validate)="validate(form)"></generic> -->
+      <setup [gui]="currentGui"></setup>
     </form>
   </div>
 </div>

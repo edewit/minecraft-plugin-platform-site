@@ -14,6 +14,7 @@ import {LaunchConfig} from "../shared/config.component";
 
 import {IntroComponent} from "./pages/intro/intro.component";
 import {GenericPage} from "./pages/generic/generic.page";
+import {SetupPage} from "./pages/setup/setup.page";
 
 import {StepComponent} from "./components/step/step.component";
 import {ProjectNameInputModule} from "./components/project-name-input/project-name-input.component";
@@ -36,6 +37,7 @@ import {ModalModule} from "ngx-modal";
     FormComponent,
     IntroComponent,
     GenericPage,
+    SetupPage,
     StepComponent,
     ButtonComponent,
     AuthenticationDirective
