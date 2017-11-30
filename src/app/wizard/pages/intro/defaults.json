@@ -1,0 +1,42 @@
+{
+  "state": {},
+  "stepIndex": 3,
+  "inputs": [
+    {
+      "name": "deploymentType",
+      "value": "Continuous delivery"
+    },
+    {
+      "name": "openShiftCluster",
+      "value": "openshift-v3"
+    },
+    {
+      "name": "mission",
+      "value": "Plugin Example"
+    },
+    {
+      "name": "runtime",
+      "value": "Sponge plugin"
+    },
+    {
+      "name": "named",
+      "value": "minecraft-server"
+    },
+    {
+      "name": "gitHubRepositoryName",
+      "value": "minecraft-server"
+    },
+    {
+      "name": "groupId",
+      "value": "io.openshift.booster"
+    },
+    {
+      "name": "artifactId",
+      "value": "booster-plugin-sponge"
+    },
+    {
+      "name": "version",
+      "value": "1.0.0-SNAPSHOT"
+    }
+  ]
+}
