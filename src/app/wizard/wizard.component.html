@@ -30,8 +30,11 @@
         <la-buttons [state]="currentGui.state" disabled="true"></la-buttons>
       </div>
 
-      <!-- <generic [gui]="currentGui" [validation]="validation" (validate)="validate(form)"></generic> -->
-      <setup [gui]="currentGui"></setup>
+      <span [ngSwitch]="currentGui.metadata?.name">
+        <deploy [command]="command" *ngSwitchCase="'Review Summary'" authentication></deploy>
+        <nextSteps [gui]="currentGui" *ngSwitchCase="'Next Steps'" authentication></nextSteps>
+      </span>
+      <!-- <setup [gui]="currentGui"></setup> -->
     </form>
   </div>
 </div>

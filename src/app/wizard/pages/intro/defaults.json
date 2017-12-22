@@ -1,6 +1,6 @@
 {
   "state": {},
-  "stepIndex": 3,
+  "stepIndex": 4,
   "inputs": [
     {
       "name": "deploymentType",
@@ -24,7 +24,7 @@
     },
     {
       "name": "gitHubRepositoryName",
-      "value": "minecraft-server"
+      "value": "minecraft-plugin"
     },
     {
       "name": "groupId",

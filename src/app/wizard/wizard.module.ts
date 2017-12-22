@@ -15,6 +15,9 @@ import {LaunchConfig} from "../shared/config.component";
 import {IntroComponent} from "./pages/intro/intro.component";
 import {GenericPage} from "./pages/generic/generic.page";
 import {SetupPage} from "./pages/setup/setup.page";
+import {DeployPage} from "./pages/deploy/deploy.page";
+import {NextStepsPage} from "./pages/nextSteps/nextSteps.page";
+import {LinkAccountsPage} from "./pages/linkAccounts/link-accounts.page";
 
 import {StepComponent} from "./components/step/step.component";
 import {ProjectNameInputModule} from "./components/project-name-input/project-name-input.component";
@@ -38,6 +41,9 @@ import {ModalModule} from "ngx-modal";
     IntroComponent,
     GenericPage,
     SetupPage,
+    DeployPage,
+    NextStepsPage,
+    LinkAccountsPage,
     StepComponent,
     ButtonComponent,
     AuthenticationDirective

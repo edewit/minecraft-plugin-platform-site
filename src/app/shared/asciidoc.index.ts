@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AsciidocIndex } from "ngx-forge";
 
-let adocIndex = {};//require('../../assets/adoc.index');
+let adocIndex = require('../../assets/adoc.index');
 
 @Injectable()
 export class LaunchAdocIndex extends AsciidocIndex {
